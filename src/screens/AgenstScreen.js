@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Text, StyleSheet, View, ScrollView, SafeAreaView } from "react-native"
-import { FlatList } from "react-native-gesture-handler"
 import AgentItem from "../components/AgentItem"
+import { Divider } from "../components/Divider"
 
 export function AgentsScreen() {
   const [data, setData] = useState([])
@@ -42,12 +42,18 @@ export function AgentsScreen() {
         <Text>Loading</Text>
       ) : (
         data.map((agent) => (
-          <AgentItem
-            uuid={agent.uuid}
-            name={agent.displayName}
-            description={agent.description}
-            icon={agent.displayIcon}
-          />
+          <View key={agent.uuid}>
+            <AgentItem
+              uuid={agent.uuid}
+              name={agent.displayName}
+              description={agent.description}
+              icon={agent.displayIcon}
+              onPress={() =>
+                navigation.navigate("AgentDetail", { uuid: agent.uuid })
+              }
+            />
+            <Divider />
+          </View>
         ))
       )}
     </ScrollView>
