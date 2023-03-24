@@ -2,30 +2,24 @@ import React from "react"
 import { Text, View, StyleSheet, TouchableHighlight, Image } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 
-const AgentItem = (props) => {
-  function OpenAgentDetail(uuid) {
-    navigation.navigate("AgentDetail", { uuid: uuid })
-  }
+const MapItem = (props) => {
   const navigation = useNavigation()
+
+  function OpenMapDetail(uuid) {
+    navigation.navigate("MapDetail", { uuid: uuid })
+  }
+
   return (
     <View>
       <TouchableHighlight
         underlayColor="#fa4454"
-        onPress={() => OpenAgentDetail(props.uuid)}
+        onPress={() => OpenMapDetail(props.uuid)}
       >
         <View style={styles.container}>
           <View style={styles.topContentFlex}>
-            <Image
-              source={{ uri: props.icon }}
-              resizeMode="contain"
-              style={styles.image}
-            />
-            <Text style={styles.agentName}>{props.name}</Text>
+            <Image source={{ uri: props.image }} style={styles.image} />
           </View>
-
-          <Text numberOfLines={3} style={styles.agentDescription}>
-            {props.description}
-          </Text>
+          <Text style={styles.mapName}>{props.name}</Text>
         </View>
       </TouchableHighlight>
     </View>
@@ -35,27 +29,32 @@ const AgentItem = (props) => {
 const styles = StyleSheet.create({
   container: {
     marginVertical: 10,
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
   topContentFlex: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
   },
-  agentName: {
+  mapName: {
+    flex: 1,
+    textAlign: "center",
     textTransform: "uppercase",
     fontWeight: "bold",
     fontSize: 20,
-    marginLeft: 10,
+    marginBottom: 20,
   },
-  agentDescription: {
+  mapDescription: {
     marginTop: 10,
     marginBottom: 10,
   },
   image: {
-    width: 50,
-    height: 50,
-    borderRadius: 10,
+    width: "100%",
+    height: undefined,
+    resizeMode: "cover",
+    aspectRatio: 4,
+    marginVertical: 20,
   },
 })
 
-export default AgentItem
+export default MapItem

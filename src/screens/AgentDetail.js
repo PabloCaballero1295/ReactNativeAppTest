@@ -7,8 +7,8 @@ import {
   Image,
   TouchableWithoutFeedback,
 } from "react-native"
-import AgentItem from "../components/AgentItem"
-import { Divider } from "../components/Divider"
+
+import { Loading } from "../components/Loading"
 
 export function AgentDetail({ route }) {
   const uuid = route.params.uuid
@@ -37,7 +37,7 @@ export function AgentDetail({ route }) {
   return (
     <ScrollView style={styles.scrollView}>
       {loading ? (
-        <Text>Loading</Text>
+        <Loading />
       ) : (
         <View>
           <Image

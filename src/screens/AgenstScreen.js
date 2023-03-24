@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react"
-import { Text, StyleSheet, View, ScrollView, SafeAreaView } from "react-native"
+import { Text, StyleSheet, View, ScrollView } from "react-native"
 import AgentItem from "../components/AgentItem"
 import { Divider } from "../components/Divider"
+import { Loading } from "../components/Loading"
 
 export function AgentsScreen() {
   const [data, setData] = useState([])
@@ -39,7 +40,7 @@ export function AgentsScreen() {
   return (
     <ScrollView style={styles.scrollView}>
       {loading ? (
-        <Text>Loading</Text>
+        <Loading />
       ) : (
         data.map((agent) => (
           <View key={agent.uuid}>
@@ -48,9 +49,6 @@ export function AgentsScreen() {
               name={agent.displayName}
               description={agent.description}
               icon={agent.displayIcon}
-              onPress={() =>
-                navigation.navigate("AgentDetail", { uuid: agent.uuid })
-              }
             />
             <Divider />
           </View>
