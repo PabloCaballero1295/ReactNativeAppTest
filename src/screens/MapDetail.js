@@ -37,6 +37,12 @@ export function MapDetail({ route }) {
               source={{ uri: mapData.displayIcon }}
               style={styles.mapLayout}
             ></Image>
+            <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+              Coordenadas
+            </Text>
+            <Text style={{ fontSize: 16, marginBottom: 10 }}>
+              {mapData.coordinates}
+            </Text>
           </View>
         </View>
       )}
